@@ -3,3 +3,5 @@
 .lsp
 .calva/output-window
 .nrepl-port
+target
+classes
