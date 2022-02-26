@@ -1,7 +1,8 @@
 (ns start
   (:require
    [nrepl.server :as nrepl]
-   [services.http :as http])
+   [services.http :as http]
+   [services.reload :as reload])
   (:gen-class))
 
 
@@ -10,5 +11,6 @@
   (nrepl/start-server :port 7888)
   (println "Starting HTTP server")
   (http/start)
+  (reload/start)
   (.read (System/in))
   (println "The end."))
