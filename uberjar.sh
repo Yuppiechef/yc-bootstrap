@@ -1,4 +1,6 @@
 #!/bin/bash
 
-clj -M -e "(compile 'hello)"
-clj -M:uberdeps --main-class hello
+rm -rf classes
+mkdir classes
+clj -M -e "(compile 'start)"
+clj -M:uberdeps --main-class start

@@ -1,8 +1,11 @@
 # Breakdown Notes:
 
-Currently tagged step: 1
+This is not a production ready process, but is for showcasing the rough architecture and structure that goes into building a project like this from scratch.
 
-# Step 1 - Initial Basic setup
+Currently tagged step: 2
+
+## Step 1 - Initial Basic setup
+
  - Calva getting started
  - Clojure getting started: https://clojure.org/guides/getting_started
     - Get 'clojure' CLI installed
@@ -21,7 +24,7 @@ Enter the following in your .gitignore:
 .nrepl-port
 ```
 
-# Step 2 - Setup uberjar and run process from jar.
+## Step 2 - Setup uberjar and run process from jar.
 
 https://github.com/tonsky/uberdeps
 
@@ -75,16 +78,38 @@ To run it directly without creating a java archive, you can still:
 Some bookeepping before committing and tagging:
 
  - Add `target` and `classes` to `.gitignore` file
- 
 
-# Step 3 - Trim down the AOT compile space.
+There are things we can do to speed up the AOT process, like lazily require the namespaces from the main class - but that's out of scope for here, as that is a production level optimization.
 
-If you look at the classes folder, you'll see it branch out a _lot_. Most of that is silly work, really - so let's clear that out.
+## Some clearing up in prep
 
+Rename the main file to `start.clj`, remove anything else except for a very simple 'hello world' `-main` function in the file.
 
+Remove any other clj source files.
 
+Update the `uberjar.sh` file to use `start` instead of `hello` and test.
 
+## Embedded nrepl support
 
+## HTTP server & routing
+
+## Unified endpoints
+
+## Clojurescript, shadow-cljs initial
+
+## Rum & Server side rendering support.
+
+## Websockets
+
+## Persistence: Datomic
+
+## Persistence: MySQL
+
+## Queuing: Kafka
+
+## Configuration
+
+## Profiles
 
 # VSCode vs intellij Calva Notes
 
