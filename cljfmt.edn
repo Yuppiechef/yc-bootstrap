@@ -1,0 +1,4 @@
+{:indents ^:replace
+ {#".*" [[:inner 0]]}
+ :remove-multiple-non-indenting-spaces? true
+ :insert-missing-whitespace? true}
