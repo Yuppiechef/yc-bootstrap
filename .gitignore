@@ -1,0 +1,5 @@
+.clj-kondo/.cache
+.cpcache
+.lsp
+.calva/output-window
+.nrepl-port
