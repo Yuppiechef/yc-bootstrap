@@ -269,3 +269,20 @@ Next, in `app.cljs`, add the needed `:require`s and add a `read-state` function 
 Now refresh, and you should see the state as `Clojure` and `count 10` with no bouncyness, and the button should Just Work. Also, notice the change to `rum/hydrate` instead of `rum/mount`.
 
 And that's it. Now as long as you can build up state on the server side and translate it to the client side consistently, you'll be Just Fine :tm:.
+
+One last thing.. kinda important, test the uberjar process - add the shadow-cljs release line under the `mkdir classes` line in the `uberjar.sh`
+
+```bash
+shadow-cljs release app
+```
+
+Then test it:
+
+```bash
+cd target
+java -jar yc-bootstrap.jar
+```
+
+I get an error for hawk not finding the src folder - we should really make it not run if it can't find that.. but we can worry about that later. For now, check http://localhost:8080 and see that all runs.
+
+If you inspect the network, you should see that the main.js now weighs in at roughly 317kb - there's a _lot_ of plumbing in there.
