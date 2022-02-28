@@ -3,7 +3,7 @@
  ["src"]
 
  :dependencies
- []
+ [[rum "0.12.8"]]
 
 
  :builds

@@ -1,5 +1,7 @@
 (ns services.http
   (:require
+   [components]
+   [rum.core :as rum]
    [org.httpkit.server :as http-kit]
    [ring.middleware.resource :as res]))
 
@@ -7,7 +9,11 @@
   "Test Page")
 
 (defn index [req]
-  {:body (pr-str req)})
+  (let [app-atom (atom {:name "Clojure" :count 10})]
+    (rum/render-static-markup
+      (components/index
+        (components/main-page app-atom)
+        app-atom))))
 
 (defn routing [req]
   (cond
