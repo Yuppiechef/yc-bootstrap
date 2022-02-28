@@ -13,9 +13,7 @@ Currently tagged step: 6
  - [Step 5 - Hot reloading](doc/step5-hotreload.md)
  - [Step 6a - HTTP Routing](doc/step6a-httprouting.md)
  - [Step 6b - Serving up static files](doc/step6b-static-files.md)
-
-
-## Clojurescript, shadow-cljs initial bits.
+ - [Step 7 - ClojureScript](doc/step7-clojurescript.md)
 
 ## Rum & Server side rendering support.
 

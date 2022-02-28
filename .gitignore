@@ -5,3 +5,6 @@
 .nrepl-port
 target
 classes
+node_modules
+resources/public/js
+.shadow-cljs
