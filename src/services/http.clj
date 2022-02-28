@@ -1,12 +1,56 @@
 (ns services.http
   (:require
-   [org.httpkit.server :as http-kit]))
+   [org.httpkit.server :as http-kit]
+   [ring.middleware.resource :as res]))
 
+(defn test [req]
+  "Test Page")
+
+(defn index [req]
+  {:body (pr-str req)})
+
+(defn routing [req]
+  (cond
+    (and
+      (= (:request-method req) :get)
+      (= (:uri req) "/test.htm"))
+    (test req)
+
+    :else
+    (index req)))
+
+(defn maybe-status [result status]
+  (if (:status result)
+    result
+    (assoc result :status status)))
+
+(defn maybe-content-type [result content-type]
+  (if (get-in result [:headers "Content-Type"])
+    result
+    (assoc-in result [:headers "Content-Type"] content-type)))
+
+(defn wrap-result [handler]
+  (fn [req]
+    (let [result (handler req)]
+      (cond
+        (map? result)
+        (->
+          result
+          (maybe-status 200)
+          (maybe-content-type "text/html"))
+
+        :else
+        {:status 200
+         :headers {"Content-Type" "text/html"}
+         :body result}))))
 
 (defn app [req]
-  {:status 200
-   :headers {"Content-Type" "text/html"}
-   :body "hello HTTP!"})
+  (let [handler
+        (->
+          routing
+          (wrap-result)
+          (res/wrap-resource "public"))]
+    (handler req)))
 
 (defonce server (atom nil))
 
