@@ -1,5 +1,7 @@
 ## Rum & Server side rendering support.
 
+Tag: https://github.com/yuppiechef/yc-bootstrap/tree/step8-rum-ssr
+
 If you haven't already, be sure to fire up shadow-cljs with:
 
 ```bash

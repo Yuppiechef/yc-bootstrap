@@ -1,5 +1,7 @@
 ## ClojureScript, shadow-cljs initial bits.
 
+Tag: https://github.com/yuppiechef/yc-bootstrap/tree/step7-clojurescript 
+
 Ok, now that we have an http server going with a way to handle static files (which is important for .js files!), let's setup ClojureScript using shadow-cljs as our 'library' of choice.
 
 We could handle this with other ways and painstakingly build up some kind of reload flow, but that feels like a lot of work for minimal gain (possibly following something like https://clojurescript.org/guides/quick-start, but naah), soooo...
