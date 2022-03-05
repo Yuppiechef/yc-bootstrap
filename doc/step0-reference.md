@@ -5,19 +5,26 @@ syntax, libraries used and some level of glossary.
 
 Feel free to skim this section, it's about having an achor as you work through the rest of the material in this repository.
 
-I'll add a bunch of reference links here first, and then go on a bit of an 'intro to clojure' rant.
+I'll add a bunch of reference links here first, and then go on a bit of an 
+'intro to clojure' rant.
 
 ## Links used through this project:
 
 In roughly the order given.
+
+You may like to look at these for getting started with Clojure:
+
+- Clojure Exercism Syllabus: https://exercism.org/tracks/clojure
+- ClojureScript Koans: http://clojurescriptkoans.com/ 
+- 4ever-clojure: https://4clojure.oxal.org/
+- Practicalli: https://practical.li/
+- Common Libraries: https://www.clojure-toolbox.com/
 
 ### Step 0
 
 - Clojure - The Reader: https://clojure.org/reference/reader
 - Clojure cheatsheet: https://clojure.org/api/cheatsheet
 - ClojureScript cheatsheet: https://cljs.info/cheatsheet/
-- Common Libraries: https://www.clojure-toolbox.com/
-
 
 ### Step 1
 
@@ -71,6 +78,18 @@ In roughly the order given.
 
 
 ## Clojure
+
+### Firstly.
+
+You may like to look at these for getting started with Clojure:
+
+- Clojure Exercism Syllabus: https://exercism.org/tracks/clojure
+- ClojureScript Koans: http://clojurescriptkoans.com/ 
+- 4ever-clojure: https://4clojure.oxal.org/
+- Practicalli: https://practical.li/
+- Common Libraries: https://www.clojure-toolbox.com/
+
+There are many formats out there - find some combination that clicks for you, it all boils down to the same end result, hopefully the one where you also enjoy Clojure!
 
 ### What it is:
 
@@ -387,3 +406,5 @@ Not a whole lot more to add here.
 Actually, just go through this: https://www.braveclojure.com/do-things/ - Daniel does a much better job here, and it'll do you good to see the data stuff in a different, more pragmatic angle.
 
 Please _don't_ go installing emacs according to the book though, unless you feel like a long zen journey. In which case, heck, why not?
+
+

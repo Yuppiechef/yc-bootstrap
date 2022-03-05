@@ -4,7 +4,6 @@ This is not a production ready process, but is for showcasing the rough architec
 
 Note, there are many libraries out there that accomplish you could flip out instead of the ones used below. I am using the ones we use at Yuppiechef, but you may decide for yourself what is appropriate for your usecase. A starting point for the menu of options you have available is over here: https://www.clojure-toolbox.com/
 
-Currently tagged step: 6
 
  - [Step 0 - Clojure + Reference](doc/step0-reference.md)
  - [Step 1 - Initial Basic setup](doc/step1-initial.md)
@@ -42,6 +41,8 @@ Move rum components to `web`
 ## Configuration
 
 ## Profiles
+
+## Donut.system?
 
 # VSCode vs intellij Calva Notes
 
