@@ -13,61 +13,61 @@ In roughly the order given.
 
 ### Step 0
 
-Clojure - The Reader: https://clojure.org/reference/reader
-Clojure cheatsheet: https://clojure.org/api/cheatsheet
-ClojureScript cheatsheet: https://cljs.info/cheatsheet/
-Common Libraries: https://www.clojure-toolbox.com/
+- Clojure - The Reader: https://clojure.org/reference/reader
+- Clojure cheatsheet: https://clojure.org/api/cheatsheet
+- ClojureScript cheatsheet: https://cljs.info/cheatsheet/
+- Common Libraries: https://www.clojure-toolbox.com/
 
 
 ### Step 1
 
-Step 1: https://github.com/yuppiechef/yc-bootstrap/tree/step1-initial
-Clojure - Getting Started: https://clojure.org/guides/getting_started
-Clojure - Deps and CLI: https://clojure.org/guides/deps_and_cli
+- Step 1: https://github.com/yuppiechef/yc-bootstrap/tree/step1-initial
+- Clojure - Getting Started: https://clojure.org/guides/getting_started
+- Clojure - Deps and CLI: https://clojure.org/guides/deps_and_cli
 
 ### Step 2
 
-Step 2: https://github.com/yuppiechef/yc-bootstrap/tree/step2-uberjar
-Uberdeps: https://github.com/tonsky/uberdeps
+- Step 2: https://github.com/yuppiechef/yc-bootstrap/tree/step2-uberjar
+- Uberdeps: https://github.com/tonsky/uberdeps
 
 ### Step 3
 
-Step 3: https://github.com/yuppiechef/yc-bootstrap/tree/step3-cleanup
-nRepl: https://github.com/nrepl/nrepl
+- Step 3: https://github.com/yuppiechef/yc-bootstrap/tree/step3-cleanup
+- nRepl: https://github.com/nrepl/nrepl
 
 ### Step 4
 
-Step 4: https://github.com/yuppiechef/yc-bootstrap/tree/step4-http
-Http-kit: https://github.com/http-kit/http-kit
-Server Doc: https://http-kit.github.io/server.html#stop-server
+- Step 4: https://github.com/yuppiechef/yc-bootstrap/tree/step4-http
+- Http-kit: https://github.com/http-kit/http-kit
+- Server Doc: https://http-kit.github.io/server.html#stop-server
 
 ### Step 5
 
-Step 5: https://github.com/yuppiechef/yc-bootstrap/tree/step5-hotreloading
-Hawk: https://github.com/wkf/hawk
+- Step 5: https://github.com/yuppiechef/yc-bootstrap/tree/step5-hotreloading
+- Hawk: https://github.com/wkf/hawk
 
 ### Step 6
 
-Step 6: https://github.com/yuppiechef/yc-bootstrap/tree/step6-static-files
-Compojure: https://github.com/weavejester/compojure
-Favicon: https://favicon.io/emoji-favicons/
-Favicon - cat with wry smile: https://favicon.io/emoji-favicons/cat-with-wry-smile
-Ring: https://github.com/ring-clojure/ring
-ring.util.response: https://github.com/ring-clojure/ring/blob/master/ring-core/src/ring/util/response.clj
+- Step 6: https://github.com/yuppiechef/yc-bootstrap/tree/step6-static-files
+- Compojure: https://github.com/weavejester/compojure
+- Favicon: https://favicon.io/emoji-favicons/
+- Favicon - cat with wry smile: https://favicon.io/emoji-favicons/cat-with-wry-smile
+- Ring: https://github.com/ring-clojure/ring
+- ring.util.response: https://github.com/ring-clojure/ring/blob/master/ring-core/src/ring/util/response.clj
 
 ### Step 7
 
-Step 7: https://github.com/yuppiechef/yc-bootstrap/tree/step7-clojurescript 
-ClojureScript Quick Start: https://clojurescript.org/guides/quick-start
-Shadow-cljs User Guide: https://shadow-cljs.github.io/docs/UsersGuide.html
-Shadow-cljs Standalone Code via NPM: https://shadow-cljs.github.io/docs/UsersGuide.html#_standalone_via_code_npm_code
-NPM Installing Node and NPM: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+- Step 7: https://github.com/yuppiechef/yc-bootstrap/tree/step7-clojurescript 
+- ClojureScript Quick Start: https://clojurescript.org/guides/quick-start
+- Shadow-cljs User Guide: https://shadow-cljs.github.io/docs/UsersGuide.html
+- Shadow-cljs Standalone Code via NPM: https://shadow-cljs.github.io/docs/UsersGuide.html#_standalone_via_code_npm_code
+- NPM Installing Node and NPM: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
 
 
 ### Step 8
 
-https://github.com/yuppiechef/yc-bootstrap/tree/step8-rum-ssr
-Rum: https://github.com/tonsky/rum
+- Step 8: https://github.com/yuppiechef/yc-bootstrap/tree/step8-rum-ssr
+- Rum: https://github.com/tonsky/rum
 
 
 ## Clojure
