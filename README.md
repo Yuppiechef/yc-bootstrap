@@ -15,7 +15,7 @@ Currently tagged step: 6
  - [Step 6a - HTTP Routing](doc/step6a-httprouting.md)
  - [Step 6b - Serving up static files](doc/step6b-static-files.md)
  - [Step 7 - ClojureScript](doc/step7-clojurescript.md)
- - [Step 8 - Rum & SSR](doc/step8-rumssr.md)
+ - [Step 8 - Rum & SSR](doc/step8-rum.md)
 
 ## Websockets
 
