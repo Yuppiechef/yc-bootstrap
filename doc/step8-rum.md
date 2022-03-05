@@ -10,6 +10,8 @@ shadow-clj watch pos
 
 Maybe you're a little underwhelmed right now. That's ok. Have a lie down, have a coffee and press on. It might get better.
 
+We'll implement Rum: https://github.com/tonsky/rum 
+
 Let's get some React goodness going - update your `shadow-cljs.edn` `:dependencies` like so:
 
 ```clojure

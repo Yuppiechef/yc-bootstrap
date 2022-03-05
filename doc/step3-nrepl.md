@@ -2,6 +2,8 @@
 
 Tag: https://github.com/yuppiechef/yc-bootstrap/tree/step3-cleanup
 
+nRepl Project: https://github.com/nrepl/nrepl
+
 This is mostly a convenience measure for your first app so that everything runs together in the same way as your 'production' app. You will want to check whether you want to actually have this exposed in production.
 
 Add nrepl into the `:deps` map at `deps.edn`:

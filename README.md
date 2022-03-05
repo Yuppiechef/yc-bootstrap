@@ -6,6 +6,7 @@ Note, there are many libraries out there that accomplish you could flip out inst
 
 Currently tagged step: 6
 
+ - [Step 0 - Clojure + Reference](doc/step0-reference.md)
  - [Step 1 - Initial Basic setup](doc/step1-initial.md)
  - [Step 2 - Setup uberjar and run process from jar](doc/step2-uberjar.md)
  - [Step 3 - Embedded nrepl support](doc/step3-nrepl.md)
@@ -17,6 +18,18 @@ Currently tagged step: 6
  - [Step 8 - Rum & SSR](doc/step8-rumssr.md)
 
 ## Websockets
+
+## A bit of housekeeping
+
+Refactor stuff out of `services.http` namespace
+Move rum components to `web`
+
+## Sessions
+
+## Pages (screens), History & Actions
+
+## Modals
+
 
 ## Persistence: Datomic
 
@@ -36,7 +49,9 @@ Currently tagged step: 6
 # Better in VSCode
 Quicker startup
 Lightweight memory footprint
+Totally Free!
 
 # Better in Intellij
 Java integration (autocomplete & bytecode decompilation)
 Namespace Require auto-management
+Copy/Paste Hiccup conversion!
