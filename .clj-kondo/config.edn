@@ -1,11 +1,14 @@
 {:linters
  {:unused-binding
-  {:level :warning
+  {:level :info
    :exclude-destructured-keys-in-fn-args false
-   :exclude-destructured-as true
+   :exclude-destructured-as false
    :exclude-defmulti-args true}
+  :shadowed-var
+  {:level :error}
   :refer-all
   {:level :info}}
+ :skip-comments true
  :lint-as
  {rum.core/defc clojure.core/defn
   rum.core/defcs clojure.core/defn}}

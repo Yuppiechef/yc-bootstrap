@@ -1,0 +1,150 @@
+{
+    "editor.fontFamily": "'Fira Code','Droid Sans Mono', 'monospace', monospace",
+    "calva.prettyPrintingOptions": {
+        "enabled": true,
+        "width": 80,
+        "maxLength": 50,
+        "maxDepth": 10,
+        "printEngine": "pprint"
+    },
+    "calva.replConnectSequences": [
+        {
+            "name": "Mia Locally",
+            "nReplPortFile": [
+                ".nrepl-port"
+            ],
+            "afterCLJReplJackInCode": "(println \"Hello world!\")",
+            "projectType": "generic",
+            "cljsType": "none",
+        }
+    ],
+    "calva.paredit.defaultKeyMap": "strict",
+    "calva.highlight.matchedBracketStyle": {
+        "border": "4px solid #222",
+        "backgroundColor": "#333",
+    },
+    "files.exclude": {
+        ".calva": true
+    },
+    "files.autoSave": "onFocusChange",
+    "editor.rulers": [
+        {
+            "column": 80,
+            "color": "#2c2c2c"
+        },
+        {
+            "column": 120,
+            "color": "#616161"
+        }
+    ],
+    "editor.minimap.showSlider": "always",
+    "calva.fmt.configPath": ".vscode/cljfmt.edn",
+    "git.autofetch": true,
+    "calva.fmt.newIndentEngine": false,
+    "calva.highlight.bracketColors": [
+        "#6ACBFF",
+        "#ECE47F",
+        "#5DB7E4",
+        "#D46A6A",
+        "#3EC7C6",
+        "#45A851",
+        "#708CDA",
+        "#9DE6E8"
+    ],
+    "editor.quickSuggestions": {
+        "other": false,
+        "comments": false,
+        "strings": false
+    },
+    "calva.showCalvaSaysOnStart": false,
+    "workbench.colorTheme": "Darcula",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "workbench.colorCustomizations": {
+        "[Darcula]": {
+            "tab.activeBackground": "#5F5F5F",
+            "tab.inactiveBackground": "#3F3F3F",
+            "editor.background": "#3F3F3F",
+        }
+    },
+    "editor.tokenColorCustomizations": {
+        "[Darcula]": {
+            "textMateRules": [
+                {
+                    "scope": "variable.other.constant",
+                    "settings": {
+                        "foreground": "#AA8861",
+                        "fontStyle": "bold"
+                    }
+                },
+                {
+                    "scope": "constant.keyword",
+                    "settings": {
+                        "foreground": "#AA8861",
+                        "fontStyle": "bold"
+                    }
+                },
+                {
+                    "scope": "storage.control",
+                    "settings": {
+                        "foreground": "#C3B38C",
+                        "fontStyle": "bold"
+                    }
+                },
+                {
+                    "scope": "entity.global",
+                    "settings": {
+                        "foreground": "#84C2DD"
+                    }
+                },
+                {
+                    "scope": "entity.name.function",
+                    "settings": {
+                        "foreground": "#C6C6C3"
+                    }
+                },
+                {
+                    "scope": "entity.name.variable",
+                    "settings": {
+                        "foreground": "#84C2DD",
+                        "fontStyle": "italic"
+                    }
+                },
+                {
+                    "scope": "entity.name",
+                    "settings": {
+                        "foreground": "#84C2DD"
+                    }
+                },
+                {
+                    "scope": "constant.language.boolean",
+                    "settings": {
+                        "foreground": "#C3B38C",
+                        "fontStyle": "bold"
+                    }
+                },
+                {
+                    "scope": "comment.line",
+                    "settings": {
+                        "foreground": "#7A9F7F",
+                        "fontStyle": "italic"
+                    }
+                },
+                {
+                    "scope": "string",
+                    "settings": {
+                        "foreground": "#CC9385"
+                    }
+                }
+            ]
+        }
+    },
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "calva.referencesCodeLens.enabled": true,
+    "calva.highlight.rainbowIndentGuides": true,
+    "editor.fontSize": 12,
+    "calva.evaluationSendCodeToOutputWindow": false
+}
