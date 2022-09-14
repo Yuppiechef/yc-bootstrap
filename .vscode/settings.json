@@ -24,7 +24,8 @@
         "backgroundColor": "#333",
     },
     "files.exclude": {
-        ".calva": true
+        ".calva": true,
+        "target": true
     },
     "files.autoSave": "onFocusChange",
     "editor.rulers": [
@@ -40,7 +41,7 @@
     "editor.minimap.showSlider": "always",
     "calva.fmt.configPath": ".vscode/cljfmt.edn",
     "git.autofetch": true,
-    "calva.fmt.newIndentEngine": false,
+    "calva.fmt.newIndentEngine": true,
     "calva.highlight.bracketColors": [
         "#6ACBFF",
         "#ECE47F",
@@ -65,6 +66,8 @@
             "tab.activeBackground": "#5F5F5F",
             "tab.inactiveBackground": "#3F3F3F",
             "editor.background": "#3F3F3F",
+            "editor.selectionHighlightBackground": "#666666",
+            "editor.selectionHighlightBorder": "#808080"
         }
     },
     "editor.tokenColorCustomizations": {
@@ -106,8 +109,7 @@
                 {
                     "scope": "entity.name.variable",
                     "settings": {
-                        "foreground": "#84C2DD",
-                        "fontStyle": "italic"
+                        "foreground": "#84C2DD"
                     }
                 },
                 {
@@ -143,8 +145,24 @@
     "explorer.confirmDragAndDrop": false,
     "git.enableSmartCommit": true,
     "git.confirmSync": false,
-    "calva.referencesCodeLens.enabled": true,
-    "calva.highlight.rainbowIndentGuides": true,
+    "calva.referencesCodeLens.enabled": false,
+    "calva.highlight.rainbowIndentGuides": false,
     "editor.fontSize": 12,
-    "calva.evaluationSendCodeToOutputWindow": false
+    "calva.evaluationSendCodeToOutputWindow": false,
+    "calva.fmt.formatAsYouType": true,
+    "calva.paredit.strictPreventUnmatchedClosingBracket": false,
+    "calva.showDocstringInParameterHelp": true,
+    "calva.highlight.enableBracketColors": true,
+    "calva.paredit.hijackVSCodeDefaults": true,
+    "editor.minimap.maxColumn": 80,
+    "editor.overviewRulerBorder": false,
+    "search.exclude": {
+        "target": true
+    },
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "master"
+    ],
+    "git.autoStash": true,
+    "git.mergeEditor": true,
+    "git.fetchOnPull": true
 }
