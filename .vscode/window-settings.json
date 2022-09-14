@@ -1,0 +1,27 @@
+{
+    "window.openFoldersInNewWindow": "on",
+    "githubPullRequests.queries": [
+        {
+            "label": "Waiting For My Review",
+            "query": "is:open review-requested:${user}"
+        },
+        {
+            "label": "Assigned To Me",
+            "query": "is:open assignee:${user}"
+        },
+        {
+            "label": "Created By Me",
+            "query": "is:open author:${user}"
+        }
+    ],
+    "workbench.editor.showTabs": false,
+    "githubPullRequests.fileListLayout": "tree",
+    "workbench.startupEditor": "none",
+    "window.customMenuBarAltFocus": false,
+    "window.titleBarStyle": "custom",
+    "window.menuBarVisibility": "visible",
+    "git.confirmSync": false,
+    "githubPullRequests.pullBranch": "never",
+    "calva.paredit.defaultKeyMap": "original",
+    "redhat.telemetry.enabled": false,
+}
