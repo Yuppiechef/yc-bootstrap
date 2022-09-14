@@ -1,0 +1,9 @@
+{:clean
+ {:automatically-after-ns-refactor true
+  :ns-inner-blocks-indentation :next-line
+  :sort
+  {:ns true
+   :require true
+   :import true
+   :refer {:max-line-length 800}}}
+ :stubs {:generation {:namespaces #{"datomic.api"}}}}
