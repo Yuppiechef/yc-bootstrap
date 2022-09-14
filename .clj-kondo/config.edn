@@ -7,8 +7,20 @@
   :shadowed-var
   {:level :error}
   :refer-all
-  {:level :info}}
+  {:level :info}
+  :missing-else-branch
+  {:level :error}
+  :not-empty?
+  {:level :off}
+  :non-arg-vec-return-type-hint
+  {:level :off}}
+
  :skip-comments true
+ :hooks
+ {:analyze-call
+  {rum.core/defc clj-kondo.rum/defc
+   rum.core/defcs clj-kondo.rum/defcs}}
+
  :lint-as
- {rum.core/defc clojure.core/defn
-  rum.core/defcs clojure.core/defn}}
+ {rum.core/defcs rum.core/defc
+  rum.core/defcc rum.core/defc}}
