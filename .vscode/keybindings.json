@@ -329,5 +329,19 @@
         "key": "ctrl+right",
         "command": "-cursorWordEndRight",
         "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "-notebook.centerActiveCell",
+        "when": "notebookEditorFocused"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.closeSidebar"
+    },
+    {
+        "key": "enter",
+        "command": "search.action.focusSearchList",
+        "when": "searchInputBoxFocus"
     }
 ]
