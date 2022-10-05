@@ -1,29 +1,9 @@
 (ns services.http
   (:require
-   [components]
-   [rum.core :as rum]
+   [clojure.string :as str]
    [org.httpkit.server :as http-kit]
-   [ring.middleware.resource :as res]))
-
-(defn test [req]
-  "Test Page")
-
-(defn index [req]
-  (let [app-atom (atom {:name "Clojure" :count 10})]
-    (rum/render-static-markup
-      (components/index
-        (components/main-page app-atom)
-        app-atom))))
-
-(defn routing [req]
-  (cond
-    (and
-      (= (:request-method req) :get)
-      (= (:uri req) "/test.htm"))
-    (test req)
-
-    :else
-    (index req)))
+   [ring.middleware.resource :as res]
+   [web.components]))
 
 (defn maybe-status [result status]
   (if (:status result)
@@ -41,21 +21,20 @@
       (cond
         (map? result)
         (->
-          result
-          (maybe-status 200)
-          (maybe-content-type "text/html"))
+         result
+         (maybe-status 200)
+         (maybe-content-type "text/html"))
 
         :else
         {:status 200
          :headers {"Content-Type" "text/html"}
          :body result}))))
 
-(defn app [req]
+(defn app [routing req]
   (let [handler
-        (->
-          routing
-          (wrap-result)
-          (res/wrap-resource "public"))]
+        (-> routing
+            wrap-result
+            (res/wrap-resource "public"))]
     (handler req)))
 
 (defonce server (atom nil))
@@ -67,12 +46,20 @@
     (@server :timeout 100)
     (reset! server nil)))
 
-(defn start []
+(defn start [routing]
   ;; The #' is useful when you want to hot-reload code
   ;; You may want to take a look: https://github.com/clojure/tools.namespace
   ;; and https://http-kit.github.io/migration.html#reload
-  (reset! server (http-kit/run-server #'app {:port 8080})))
+  (reset! server
+          (http-kit/run-server
+           (partial #'app routing) {:port 8080})))
 
-(defn restart []
+(defn restart [routing]
   (stop)
-  (start))
+  (start routing))
+
+
+
+
+
+(defn service-rules [] [])

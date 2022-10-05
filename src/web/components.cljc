@@ -1,4 +1,4 @@
-(ns components
+(ns web.components
   (:require
    [rum.core :as rum])
   #?(:clj

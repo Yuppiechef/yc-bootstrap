@@ -45,3 +45,5 @@
   (when-let [watcher @watcher-atom]
     (hawk/stop! watcher)
     (reset! watcher nil)))
+
+(defn service-rules [] [])
