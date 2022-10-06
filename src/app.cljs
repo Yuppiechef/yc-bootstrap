@@ -12,20 +12,20 @@
     (cond
       state
       (->
-       state
-       (base64/decodeStringToByteArray true)
-       gcrypt/utf8ByteArrayToString
-       (edn/read-string))
+        state
+        (base64/decodeStringToByteArray true)
+        gcrypt/utf8ByteArrayToString
+        (edn/read-string))
 
       :else
       default)))
 
 (defonce app-atom
   (atom
-   (read-state
-    {:name "ClojureScript" :count 1})))
+    (read-state
+      {:name "ClojureScript" :count 1})))
 
 
 (rum/hydrate
- (components/main-page app-atom)
- (.getElementById js/document "reactMount"))
+  (components/main-page app-atom)
+  (.getElementById js/document "reactMount"))

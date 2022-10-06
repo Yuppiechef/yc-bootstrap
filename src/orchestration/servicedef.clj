@@ -1,4 +1,6 @@
-(ns orchestration.servicedef)
+(ns orchestration.servicedef
+  (:require
+   [clojure.string :as str]))
 
 
 ;; Service registry
@@ -35,13 +37,29 @@
                (.printStackTrace e#))))))))
 
 
-(defn foo [])
+#_(defn foo [])
 
-(defservices blah
-  #'services.http/service-rules
-  #'services.reload/service-rules
-  #'foo)
+#_(defservices blah
+    #'services.http/service-rules
+    #'services.reload/service-rules
+    #'foo)
 
 
+
+
+(defn web [method path render-fn]
+  {:type :http
+   :method method
+   :path path
+   :render-fn render-fn})
+
+(defn web-fallback [render-fn]
+  {:type :http-fallback
+   :render-fn render-fn})
+
+(defn service [handler backends & setup]
+  {:handler handler
+   :backends backends
+   :setup setup})
 
 
