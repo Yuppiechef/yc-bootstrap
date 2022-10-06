@@ -18,9 +18,9 @@ Note, there are many libraries out there that accomplish you could flip out inst
  - [Step 9 - Housekeeping](doc/step9-housekeeping.md)
  - [Step 10 - Service Lifecycle](doc/step10-servicelifecycle.md)
  - [Step 11 - Dynamic Services](doc/step11-dynamicservices.md)
+ - [Step 12 - Websockets](doc/step12-websockets.md)
 
 
-## Websockets
 
 ## Sessions
 

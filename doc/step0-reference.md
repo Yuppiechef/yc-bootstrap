@@ -76,6 +76,14 @@ You may like to look at these for getting started with Clojure:
 - Step 8: https://github.com/yuppiechef/yc-bootstrap/tree/step8-rum-ssr
 - Rum: https://github.com/tonsky/rum
 
+### Step 10
+
+_At this point I stopped tagging the steps, I sometimes need to pull back and reorganize the steps a bit, the tags pour concrete on that, so exceedingly painful to manage_
+
+### Step 12
+
+- Sente: https://github.com/ptaoussanis/sente
+- Ring anti-forgery: https://github.com/ring-clojure/ring-anti-forgery
 
 ## Clojure
 

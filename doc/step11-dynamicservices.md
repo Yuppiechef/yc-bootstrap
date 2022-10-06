@@ -2,7 +2,7 @@
 
 If you were to experiment now, you'll find that if you want to create new page routes, you'll need to restart the entire app on the command line. This is super painful, so lets fix that.
 
-The simplest first step is to change the `start.http` from taking a `service-list`, to taking a `service-rules` Var instead, evaluating it whenever a new request comes in - rename usages of `service-list` to `service-rules` in `start.http`, then update `app` to:
+The simplest first step is to change the `services.http` from taking a `service-list`, to taking a `service-rules` Var instead, evaluating it whenever a new request comes in - rename usages of `service-list` to `service-rules` in `services.http`, then update `app` to:
 
 ```clojure
 (defn app [service-rules req]
@@ -120,7 +120,7 @@ Update the `http/start` accordingly, once more:
 
 Restart and things _should_ still work properly.
 
-If you're particularly sharp, you'll have noticed that this hasn't optimized _anything_ xD `start.http/app` still calls `(service-rules)` on every request! Well observed.
+If you're particularly sharp, you'll have noticed that this hasn't optimized _anything_ xD `services.http/app` still calls `(service-rules)` on every request! Well observed.
 
 We now have the tools to fix it though, but first refactor `app` to actually take a `service-list-atom` not the rules var:
 

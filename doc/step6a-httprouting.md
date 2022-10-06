@@ -4,7 +4,7 @@ Tag: https://github.com/yuppiechef/yc-bootstrap/tree/step6-static-files
 
 We could go off and use compojure (https://github.com/weavejester/compojure) directly, but in interest of showing the plumbing that makes this work, I think it worthwhile to roll our own lightweight mechanism instead. It won't have all the bells and whistles, but it'll do for our purposes.
 
-In our `start.http` namespace, let's have a look at the request format - update the `app` function to look like this:
+In our `services.http` namespace, let's have a look at the request format - update the `app` function to look like this:
 
 ```clojure
 (defn app [req]

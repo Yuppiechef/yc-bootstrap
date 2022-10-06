@@ -1,6 +1,9 @@
 (ns web.components
   (:require
-   [rum.core :as rum])
+   #?@(:clj
+       [[ring.middleware.anti-forgery]])
+   [rum.core :as rum]
+   [util.comms :as comms])
   #?(:clj
      (:import
       (org.apache.commons.codec.binary Base64))))
@@ -12,13 +15,25 @@
      [:p "We've got " (:count state)]
      [:button
       {:on-click #(swap! app-atom update :count (fnil inc 0))}
-      "inc"]]))
+      "inc"]
+
+     [:button
+      {:on-click #(comms/send-msg :components/commtest {:msg "Hello World!"})}
+      "Send Message"]]))
+
+(defn csrf-div []
+  #?(:clj
+     (let [csrf-token (force ring.middleware.anti-forgery/*anti-forgery-token*)]
+       [:div#sente-csrf-token {:data-csrf-token csrf-token}])))
+
+
 
 (rum/defc index [body app-atom]
   [:html
    [:head
     [:title "ClojureScript"]]
    [:body
+    (csrf-div)
     [:div#reactMount
      {:data-state
       #?(:clj (Base64/encodeBase64String (.getBytes (pr-str @app-atom)))

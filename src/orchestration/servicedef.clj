@@ -45,7 +45,7 @@
     #'foo)
 
 
-
+(defn no-op [req] {:success true})
 
 (defn web [method path render-fn]
   {:type :http

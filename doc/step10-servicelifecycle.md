@@ -83,7 +83,7 @@ Now we can rework `service-rules` (add `[orchestration.servicedef :as s]` to you
 
 Note: the `#'` is a way to have the handle on the Var that references the function value instead of the raw function value at compile time. This way, if `test-page` function gets updated (specifically, a new function value is placed in the Var), this will start loading the new function instead of the old one. Without this, it's impossible to update the function value in the stack without restarting.
 
-Ok, now we incorporate this into the `routing` function, have it take a service-list as the first argument and the request as second (update the callsite in `start` namespace to `(partial index/routing index/service-rules)`) - this will become easier to shift the `routing` out to `start.http` down the line.
+Ok, now we incorporate this into the `routing` function, have it take a service-list as the first argument and the request as second (update the callsite in `start` namespace to `(partial index/routing index/service-rules)`) - this will become easier to shift the `routing` out to `services.http` down the line.
  
 First, given a service, its matching setup and a request - render the page:
 
@@ -126,7 +126,7 @@ Then the new routing function:
 
 So now if we run `clj -X start/-main`, and browse to [http://localhost:7888/test.htm], we should see our test page.
 
-Before we move on, let's shift this complexity into the `start.http` namespace where it belongs. cut the `routing` and `handle-route` out and shift it over to `start.http`.
+Before we move on, let's shift this complexity into the `services.http` namespace where it belongs. cut the `routing` and `handle-route` out and shift it over to `services.http`.
 
 You'll notice that it complains about `index` being undefined, oh dear. We can't get at the default index page, so let's add something for us to be able to define a fallback page.
 
@@ -152,7 +152,7 @@ You'll need to rename the current `index` to `index-render` and let's just add `
   {:success true})
 ```
 
-Now we tweak the `start.http/routing` loop to catch this fallback and use it if it was found:
+Now we tweak the `services.http/routing` loop to catch this fallback and use it if it was found:
 
 ```clojure
 (defn routing [service-list req]

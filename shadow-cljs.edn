@@ -3,7 +3,8 @@
  ["src"]
 
  :dependencies
- [[rum "0.12.8"]]
+ [[rum "0.12.8"]
+  [com.taoensso/sente "1.17.0"]]
 
 
  :builds

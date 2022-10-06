@@ -1,10 +1,11 @@
 (ns app
   (:require
-   [web.components]
-   [rum.core :as rum]
    [cljs.reader :as edn]
    [goog.crypt :as gcrypt]
-   [goog.crypt.base64 :as base64]))
+   [goog.crypt.base64 :as base64]
+   [rum.core :as rum]
+   [web.components :as components]
+   [util.comms :as comms]))
 
 (defn read-state [default]
   (let [node (.getElementById js/document "reactMount")
@@ -29,3 +30,5 @@
 (rum/hydrate
   (components/main-page app-atom)
   (.getElementById js/document "reactMount"))
+
+(comms/init)

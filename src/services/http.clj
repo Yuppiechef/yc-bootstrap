@@ -1,8 +1,13 @@
 (ns services.http
   (:require
-   [clojure.string :as str]
    [org.httpkit.server :as http-kit]
+   [ring.middleware.anti-forgery]
+   [ring.middleware.keyword-params]
+   [ring.middleware.cookies]
+   [ring.middleware.params]
+   [ring.middleware.session.memory :as memory]
    [ring.middleware.resource :as res]
+   [ring.middleware.session]
    [web.components]))
 
 (defn maybe-status [result status]
@@ -69,13 +74,22 @@
       :else
       (recur slist setuplist fallback))))
 
+(defonce memory-store (memory/memory-store))
+
+(defn wrap-middleware [app]
+  (-> app
+    wrap-result
+    ring.middleware.anti-forgery/wrap-anti-forgery
+    ring.middleware.keyword-params/wrap-keyword-params
+    ring.middleware.params/wrap-params
+    (ring.middleware.session/wrap-session {:store memory-store})
+    (res/wrap-resource "public")))
 
 (defn app [service-list-atom req]
   (let [handler
         (->
           (partial #'routing @service-list-atom)
-          (wrap-result)
-          (res/wrap-resource "public"))]
+          (wrap-middleware))]
     (handler req)))
 
 (defonce server (atom nil))
@@ -102,9 +116,3 @@
 (defn restart [service-rules]
   (stop)
   (start service-rules))
-
-
-
-
-
-(defn service-rules [] [])
