@@ -8,6 +8,8 @@ Tag: https://github.com/yuppiechef/yc-bootstrap/tree/step1-initial
  - Create `yc-bootstrap` folder
  - Open in vscode, create deps.edn, follow https://clojure.org/guides/deps_and_cli
 
+*Alternatively*, you can get the `.devcontainer` folder into `yc-bootstrap` and use VSCode to 'open folder in Dev Container' - that will setup all the deps you need inside there.
+
 You should now have a very basic project going - good time to get some git integration going -- Finish up with a setup where you have only a single project folder and single deps.edn, else things will get weird fast.
 
 Enter the following in your .gitignore:

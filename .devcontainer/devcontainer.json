@@ -1,0 +1,21 @@
+//devcontainer.json
+{
+    "name": "Clojure/Script",
+    "dockerFile": "Dockerfile",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash"
+            },
+            "extensions": [
+                "betterthantomorrow.calva",
+                "rokoroku.vscode-theme-darcula",
+                "ms-vscode-remote.vscode-remote-extensionpack",
+                "Vallentin.vscode-bnf",
+                "GitHub.vscode-pull-request-github",
+                "usernamehw.errorlens"
+            ]
+        }
+    },
+    "postAttachCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+}
