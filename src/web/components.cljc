@@ -21,6 +21,10 @@
       {:on-click #(comms/send-msg :components/commtest {:msg "Hello World!"})}
       "Send Message"]]))
 
+(defmethod comms/receive :components/commtest [app-atom e]
+  (println "Receiving comms test")
+  (swap! app-atom assoc :count 0))
+
 (defn csrf-div []
   #?(:clj
      (let [csrf-token (force ring.middleware.anti-forgery/*anti-forgery-token*)]

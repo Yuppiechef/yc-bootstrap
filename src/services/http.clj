@@ -105,7 +105,6 @@
   (let [service-list-atom (atom (service-rules))]
     (add-watch service-rules ::update
       (fn [k r o n]
-        (println "Updating service rules")
         (reset! service-list-atom (n))))
 
     (reset!

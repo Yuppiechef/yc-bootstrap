@@ -279,3 +279,236 @@ and with that, when you click on the button, you should see the mesage getting s
 #### Receive on server and respond.
 
 This has a few parts, but let's do a basic dumb response regardless of message to begin with, just to have information go over the wire, and then come back to making it actually useful.
+
+In the `services.websocket` namespace, replace the start function with:
+
+```clojure
+(defn user-uuid [u]
+  (:client-id u))
+
+(defn event-msg-handler
+  [service-rules {:as ev-msg :keys [client-id event id ?data ring-req ?reply-fn send-fn]}]
+  (send-fn client-id [:foo/ping {:msg "Hello world"}]))
+
+(defn start [service-rules]
+  (let [state
+        (reset! server
+          (sente/make-channel-socket! (get-sch-adapter)
+            {:user-id-fn #'user-uuid}))]
+    (sente/start-chsk-router!
+      (:ch-recv state) (partial #'event-msg-handler service-rules))
+
+    state))
+```
+
+Save and hit the 'Send message' button on the page while having the websocket messages open, and you should see the `commtest` echoing back! That was easy.
+
+Before we implement dispatching logic, let's make the echo do something when it's received on client side.
+
+#### Receive response on client side
+
+Back in our `util.comms` namespace, let's handle the receiving on the client side:
+
+```clojure
+(defn event-msg-handler
+  [{:as ev-msg :keys [client-id event id ?data ring-req ?reply-fn send-fn]}]
+
+  ;; Sente has this weird tendency to double wrap events?? I don't get it.
+  (let [[id ?data] (if (= id :chsk/recv) ?data [id ?data])]
+    (println "Received: " (pr-str [id ?data]))
+    nil))
+```
+
+And add the following in the `init` function (before the `reset!` call, but inside the let binding)
+
+```clojure
+    (sente/start-chsk-router!
+      (:ch-recv comms) #'event-msg-handler)
+```
+
+This will send all comms from server to the `event-msg-handler` function, where we'll dispatch accordingly.
+
+For now, if we check the dev console on the browser side and click the 'Send Message' button we should get a `[:foo/ping {:msg "Hello world"}]` response printed out.
+
+#### Setup API dispatching on server side
+
+OK, just having the `event-msg-handler` ping back some hardcoded thing is largely useless. We need to lookup relevant service endpoint, invoke the handler and if there's a response, respond to the client automatically.
+
+We'll bring the same optimization as we have in the `services.http` namespace across here (I'm not DRY'ing it at this point - exercise for the reader.)
+
+Alter the `websocket/start` function:
+
+```clojure
+(defn start [service-rules]
+  (let [service-list-atom (atom (service-rules))
+        state
+        (reset! server
+          (sente/make-channel-socket! (get-sch-adapter)
+            {:user-id-fn #'user-uuid}))]
+
+    (add-watch service-rules ::update
+      (fn [k r o n]
+        (reset! service-list-atom (n))))
+
+    (sente/start-chsk-router!
+      (:ch-recv state) (partial #'event-msg-handler service-list-atom))
+
+    state))
+```
+
+Then we implement a similar version of the `routing` function as the `services.http` - though here it's a slightly different version in that it's only looking up the service to call, not actually doing the call:
+
+```clojure
+(defn ->api-name [event-id]
+  (str (namespace event-id) "." (name event-id)))
+
+(defn routing [service-list ev-msg]
+  (let [api-name (->api-name (:id ev-msg))]
+  ;; We need to step through the service list AND each of their setup rules.
+  ;; The cleaner, faster way would be to have a separate function that transforms our service-list
+  ;; into a flat and indexed map to find the matching endpoints quicker.
+    (loop [[s & ss :as slist] service-list
+           [setup & setuplist] (:setup s)]
+      (cond
+      ;; Can't find a suitable match, index page
+        (nil? s)
+        {:result
+         {:ws/action :api/error
+          :success false
+          :msg (str "Service route, '" api-name "' not found")}}
+
+      ;; Done with setup for this service endpoint, try next.
+        (nil? setup)
+        (recur ss (:setup (first ss)))
+
+      ;; Match...
+        (and
+          (= (:type setup) :api)
+          (= (:path setup) api-name))
+        {:service s
+         :setup setup}
+
+      ;; No match, continue.
+        :else
+        (recur slist setuplist)))))
+```
+
+Alter the `event-msg-handler` to use it:
+
+```clojure
+(defn handle-route [{:keys [service setup]} ev-msg]
+  ((:handler service) {:params (:?data ev-msg)}))
+
+(defn event-msg-handler
+  [service-list-atom {:as ev-msg :keys [client-id event id ?data ring-req ?reply-fn send-fn]}]
+  (let [route (routing @service-list-atom ev-msg)
+        result (or (:result route) (handle-route route ev-msg))]
+    (when (and send-fn result)
+      (send-fn client-id
+        [(or (:ws/action result) id) (dissoc result :ws/action)]))))
+```
+
+Hitting 'Send Message' in the browser should now give us:
+
+```
+Received:  [:api/error {:success false, :msg "Service route not found"}]
+```
+
+Since we have no API's built - let's build a simple one to make sure this all ties together. In `ochestration.servicedef`, add an api:
+
+```clojure
+(defn api [path]
+  {:type :api
+   :path path})
+```
+
+and then a quick stub to check that this works (in the `web.index` namespace):
+
+```clojure
+(defn test-api [req]
+  {:success true
+   :msg (str "ECHO:" (pr-str (:params req)))})
+```
+
+and add
+
+```clojure
+(s/service #'test-api #{}
+  (s/api "components.commtest"))
+```
+
+into the `service-rules` function somewhere. Hit the comms button and you should see the following printed on the console:
+
+```
+Received:  [:components/commtest {:success true, :msg "ECHO:{:msg \"Hello World!\"}"}]
+```
+
+Perfect, now we've got things hooked up and dispatching to the right places on the server side, lets hook up the client side as well.
+
+#### Setup Client Side dispatching
+
+A small aside here: Ideally we really should havea similar method of using `service-rules` on the frontend, the same as the backend so that all screen routing and comms are all explicilty connected. Unfortunately, this hasn't been implemented in our actual frontend code, so I'm choosing to implement it the same as our current frontend code handles it.
+
+First thing we need is the `receive` in the `util.comms` namespace:
+
+```clojure
+(defmulti receive
+  (fn [app-atom data]
+    (:type (meta data))))
+
+(defmethod receive :default [app-atom data]
+  (println "No comms handler for " (:type (meta data))))
+```
+
+Now we need to update `event-msg-handler` to call it:
+
+```clojure
+(defn event-msg-handler
+  [app-atom {:as ev-msg :keys [client-id event id ?data ring-req ?reply-fn send-fn]}]
+
+  ;; Sente has this weird tendency to double wrap events?? I don't get it.
+  (let [[id ?data] (if (= id :chsk/recv) ?data [id ?data])]
+    (when id
+      (receive app-atom (with-meta ?data {:type id})))
+    nil))
+```
+
+You'll notice that we now also need to pass the app state into it, else we're going to have a hard time making changes to the app state! so also update `init`:
+
+```clojure
+(defn init [app-atom]
+  (let [csrf (csrf-token)
+
+        {:keys [chsk ch-recv send-fn state] :as comms}
+        (sente/make-channel-socket-client!
+          "/api/socket" csrf {:type :auto})]
+
+    (sente/start-chsk-router!
+      (:ch-recv comms) (partial #'event-msg-handler app-atom))
+
+    (reset! comms-atom
+      (assoc comms :csrf csrf))))
+```
+
+And finally, in the `app.cljs` add `app-atom` to the `comms/init` callsite.
+
+You should now get a bunch of console errors in the browser for 'No comms handler' events. You'll want to implement the `:chsk` namespaced ones, mostly just to shut it up (though this lets you track connectivity status, so keep that in mind). You'll also want to implement something for `:api/error` so that you can generically toast or something if there's a server side error - for now we'll just pop it into the console:
+
+```clojure
+(defmethod receive :chsk/state [_ _])
+(defmethod receive :chsk/handshake [_ _])
+(defmethod receive :chsk/uiport-open [_ _])
+(defmethod receive :chsk/ws-ping [_ _])
+(defmethod receive :api/error [_ e]
+  (println "Server Error: " (:msg e)))
+```
+
+Then let's connect our `:components/commtest` back up in `web.components` namespace (under `main-page` is preferable, but it's not really relevant):
+
+```clojure
+(defmethod comms/receive :components/commtest [app-atom e]
+  (println "Receiving comms test")
+  (swap! app-atom assoc :count 0))
+```
+
+Now if you click, you'll see the receive on the console, and it should update the state with zero count! Hoorah. Fully dispatched. Now you can go to town.

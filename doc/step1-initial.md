@@ -10,6 +10,8 @@ Tag: https://github.com/yuppiechef/yc-bootstrap/tree/step1-initial
 
 *Alternatively*, you can get the `.devcontainer` folder into `yc-bootstrap` and use VSCode to 'open folder in Dev Container' - that will setup all the deps you need inside there.
 
+ - Something I have seen is that sometimes `clj` command gives you `Error: Could not find or load main class clojure.main` - run `rm -rf .cpcache` and that should sort it out.
+
 You should now have a very basic project going - good time to get some git integration going -- Finish up with a setup where you have only a single project folder and single deps.edn, else things will get weird fast.
 
 Enter the following in your .gitignore:

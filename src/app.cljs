@@ -31,4 +31,4 @@
   (components/main-page app-atom)
   (.getElementById js/document "reactMount"))
 
-(comms/init)
+(comms/init app-atom)

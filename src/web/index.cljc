@@ -28,11 +28,18 @@
          (components/main-page app-atom)
          app-atom))}))
 
+(defn test-api [req]
+  {:success true
+   :msg (str "ECHO:" (pr-str (:params req)))})
+
 
 (defn service-rules []
   [(s/service #'test-page #{}
      (s/web :get "/test.htm" #'test-page-render)
      (s/web :get "/foo.htm" #'test-page-render))
+
+   (s/service #'test-api #{}
+     (s/api "components.commtest"))
 
    (s/service #'index #{}
      (s/web-fallback #'index-render))])

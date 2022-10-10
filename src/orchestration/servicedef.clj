@@ -47,6 +47,10 @@
 
 (defn no-op [req] {:success true})
 
+(defn api [path]
+  {:type :api
+   :path path})
+
 (defn web [method path render-fn]
   {:type :http
    :method method

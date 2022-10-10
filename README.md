@@ -1,9 +1,19 @@
 # Breakdown Notes:
 
-This is not a production ready process, but is for showcasing the rough architecture and structure that goes into building a project like this from scratch.
+This is not a production ready process, but is for showcasing the rough architecture and structure that goes into building a project like this from scratch. *NOT DIRECTLY FOR PRODUCTION USE* - there's a _ton_ of optimizations and hardening things you'd still need to do on top of this.
+
+Also important to realize that we're not trying to build a product of any kind - purely focussing on the plumbing that a project would need to function. You're welcome to expand and morph it into whatever suits your fancy.
 
 Note, there are many libraries out there that accomplish you could flip out instead of the ones used below. I am using the ones we use at Yuppiechef, but you may decide for yourself what is appropriate for your usecase. A starting point for the menu of options you have available is over here: https://www.clojure-toolbox.com/
 
+Quickstart to see it in action:
+
+ - Open in VSCode (`Dev Containers: Open Folder in Container...`)
+ - In Terminal view (inside VSCode), run `clj -X start/-main`
+ - Split the tab (or create a new terminal), run `shadow-cljs watch app`
+ - Browse to `http://localhost:8080`
+
+Developing this from scratch.
 
  - [Step 0 - Clojure + Reference](doc/step0-reference.md)
  - [Step 1 - Initial Basic setup](doc/step1-initial.md)
