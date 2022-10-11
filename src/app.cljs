@@ -4,8 +4,10 @@
    [goog.crypt :as gcrypt]
    [goog.crypt.base64 :as base64]
    [rum.core :as rum]
-   [web.components :as components]
-   [util.comms :as comms]))
+   [util.comms :as comms]
+   [util.flow :as flow]
+   [web.index]
+   [web.components]))
 
 (defn read-state [default]
   (let [node (.getElementById js/document "reactMount")
@@ -26,9 +28,8 @@
     (read-state
       {:name "ClojureScript" :count 1})))
 
-
 (rum/hydrate
-  (components/main-page app-atom)
+  (flow/render-state app-atom)
   (.getElementById js/document "reactMount"))
 
 (comms/init app-atom)

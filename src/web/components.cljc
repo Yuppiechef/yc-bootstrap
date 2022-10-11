@@ -3,7 +3,8 @@
    #?@(:clj
        [[ring.middleware.anti-forgery]])
    [rum.core :as rum]
-   [util.comms :as comms])
+   [util.comms :as comms]
+   [util.flow :as flow])
   #?(:clj
      (:import
       (org.apache.commons.codec.binary Base64))))
@@ -21,6 +22,10 @@
       {:on-click #(comms/send-msg :components/commtest {:msg "Hello World!"})}
       "Send Message"]]))
 
+(defmethod flow/render-screen :index
+  [app-atom _]
+  (main-page app-atom))
+
 (defmethod comms/receive :components/commtest [app-atom e]
   (println "Receiving comms test")
   (swap! app-atom assoc :count 0))
@@ -32,7 +37,7 @@
 
 
 
-(rum/defc index [body app-atom]
+(rum/defc index [app-atom body]
   [:html
    [:head
     [:title "ClojureScript"]]

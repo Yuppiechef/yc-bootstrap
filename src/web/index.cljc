@@ -2,6 +2,7 @@
   (:require
    [rum.core :as rum]
    [web.components :as components]
+   [util.flow :as flow]
    [orchestration.servicedef :as s]))
 
 (defn test-page [req]
@@ -11,22 +12,22 @@
   (str
     "Test " (get-in req [:params :name])))
 
+
 ;; No-op
 (defn index [req]
   {:success true})
 
 (defn index-render [req]
   (let [c (or (get-in req [:session :count]) 10)
-        app-atom (atom {:name "Clojure" :count c})]
+        app-atom (atom {:name "Clojure" :count c :page {:screen :index}})]
     {:session (assoc (:session req) :count (inc c))
      :status 200
      :headers
      {"Content-Type" "text/html"}
      :body
      (rum/render-static-markup
-       (components/index
-         (components/main-page app-atom)
-         app-atom))}))
+       (components/index app-atom
+         (flow/render-state app-atom)))}))
 
 (defn test-api [req]
   {:success true

@@ -2,7 +2,6 @@
   (:require
    [clojure.string :as str]))
 
-
 ;; Service registry
 
 ;; 
