@@ -6,8 +6,9 @@
    [rum.core :as rum]
    [util.comms :as comms]
    [util.flow :as flow]
-   [web.index]
-   [web.components]))
+   [util.urlstate :as urlstate]
+   [web.components]
+   [web.index]))
 
 (defn read-state [default]
   (let [node (.getElementById js/document "reactMount")
@@ -28,6 +29,8 @@
     (read-state
       {:name "ClojureScript" :count 1})))
 
+
+(urlstate/setup-history app-atom)
 (rum/hydrate
   (flow/render-state app-atom)
   (.getElementById js/document "reactMount"))

@@ -1,2 +1,0 @@
-(ns util.core)
-

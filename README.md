@@ -32,17 +32,11 @@ Developing this from scratch.
  - [Step 13 - Pages (screens)](doc/step13-pages.md)
 
 
-
-## Modals
-
-
 ## Persistence: Datomic
 
 ## Persistence: MySQL
 
 ## Queuing: Kafka
-
-## Unified endpoints
 
 ## Configuration
 

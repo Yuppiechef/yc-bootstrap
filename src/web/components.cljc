@@ -4,7 +4,8 @@
        [[ring.middleware.anti-forgery]])
    [rum.core :as rum]
    [util.comms :as comms]
-   [util.flow :as flow])
+   [util.flow :as flow]
+   [util.urlstate :as urlstate])
   #?(:clj
      (:import
       (org.apache.commons.codec.binary Base64))))
@@ -20,7 +21,11 @@
 
      [:button
       {:on-click #(comms/send-msg :components/commtest {:msg "Hello World!"})}
-      "Send Message"]]))
+      "Send Message"]
+
+     [:button
+      (urlstate/href-props app-atom "second")
+      "To second page"]]))
 
 (defmethod flow/render-screen :index
   [app-atom _]
@@ -35,7 +40,15 @@
      (let [csrf-token (force ring.middleware.anti-forgery/*anti-forgery-token*)]
        [:div#sente-csrf-token {:data-csrf-token csrf-token}])))
 
+(rum/defc second-page < rum/reactive [app-atom]
+  [:div
+   [:h1 "This is another page"]
+   [:button
+    (urlstate/href-props app-atom "index")
+    "Back to index"]])
 
+(defmethod flow/render-screen :second [app-atom _]
+  (second-page app-atom))
 
 (rum/defc index [app-atom body]
   [:html

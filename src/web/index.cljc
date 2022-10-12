@@ -1,9 +1,10 @@
 (ns web.index
   (:require
+   [orchestration.servicedef :as s]
    [rum.core :as rum]
-   [web.components :as components]
    [util.flow :as flow]
-   [orchestration.servicedef :as s]))
+   [util.urlstate :as urlstate]
+   [web.components :as components]))
 
 (defn test-page [req]
   {:success true :name (:uri req)})
@@ -20,6 +21,8 @@
 (defn index-render [req]
   (let [c (or (get-in req [:session :count]) 10)
         app-atom (atom {:name "Clojure" :count c :page {:screen :index}})]
+
+    (urlstate/set-uri! app-atom req)
     {:session (assoc (:session req) :count (inc c))
      :status 200
      :headers

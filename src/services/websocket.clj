@@ -24,7 +24,6 @@
   ;; into a flat and indexed map to find the matching endpoints quicker.
     (loop [[s & ss :as slist] service-list
            [setup & setuplist] (:setup s)]
-      (println (:type setup) " - " (:path setup))
       (cond
       ;; Can't find a suitable match, index page
         (nil? s)
