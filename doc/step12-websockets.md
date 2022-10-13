@@ -60,6 +60,8 @@ Create a `services.websocket` namespace and we'll give it a similar set of `star
 
 (Most of the work here happens in the `(sente/make-channel-socket! (get-sch-adapter) {})` line)
 
+An aside - the below code also accidentally implements session handling - oops. I was going to make a whole section on that.
+
 Let's add the needed middleware to `services.http` namespace and alter the `app` function to include it:
 
 ```clojure
@@ -227,7 +229,7 @@ and at the bottom of `apps.cljs` add a call to `(comms/init)`
 
 ### Troubleshooting
 
-The CSRF bit is quite fiddly and no end in pain - it should work with the above, but if it doesn't, you'll want to dial back and update your `web.index/index-render` and check that sessions are working as expected:
+The CSRF bit is quite fiddly and no end in pain - it should work with the above, but if it doesn't, you'll want to dial back and update your `web.index/index-render` and check that sessions are working as expected (Notice, this is how you can interact with the page session):
 
 ```clojure
 (defn index-render [req]

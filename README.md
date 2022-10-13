@@ -29,14 +29,7 @@ Developing this from scratch.
  - [Step 10 - Service Lifecycle](doc/step10-servicelifecycle.md)
  - [Step 11 - Dynamic Services](doc/step11-dynamicservices.md)
  - [Step 12 - Websockets](doc/step12-websockets.md)
-
-
-
-## Sessions
-
-## Pages (screens), History & Actions
-
-## Modals
+ - [Step 13 - Pages (screens)](doc/step13-pages.md)
 
 
 ## Persistence: Datomic
@@ -44,8 +37,6 @@ Developing this from scratch.
 ## Persistence: MySQL
 
 ## Queuing: Kafka
-
-## Unified endpoints
 
 ## Configuration
 
