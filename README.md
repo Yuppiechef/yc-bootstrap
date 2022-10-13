@@ -30,9 +30,9 @@ Developing this from scratch.
  - [Step 11 - Dynamic Services](doc/step11-dynamicservices.md)
  - [Step 12 - Websockets](doc/step12-websockets.md)
  - [Step 13 - Pages (screens)](doc/step13-pages.md)
+ - [Step 14 - Persistence: Datomic](doc/step14-datomic.md)
 
-
-## Persistence: Datomic
+## Middleware context
 
 ## Persistence: MySQL
 

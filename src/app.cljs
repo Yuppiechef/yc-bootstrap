@@ -29,6 +29,10 @@
     (read-state
       {:name "ClojureScript" :count 1})))
 
+(defn ^:dev/after-load refresh []
+  (rum/mount
+    (flow/render-state app-atom)
+    (.getElementById js/document "reactMount")))
 
 (urlstate/setup-history app-atom)
 (rum/hydrate
@@ -36,3 +40,4 @@
   (.getElementById js/document "reactMount"))
 
 (comms/init app-atom)
+
