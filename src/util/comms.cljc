@@ -6,7 +6,8 @@
 
 (defn send-msg [event data]
   (let [send-fn (:send-fn @comms-atom)]
-    (send-fn [event data])))
+    (when send-fn
+      (send-fn [event data]))))
 
 (defn csrf-token []
   #?(:cljs

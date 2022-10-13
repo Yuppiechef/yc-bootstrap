@@ -5,7 +5,8 @@
    [rum.core :as rum]
    [util.comms :as comms]
    [util.flow :as flow]
-   [util.urlstate :as urlstate])
+   [util.urlstate :as urlstate]
+   [web.guestbook])
   #?(:clj
      (:import
       (org.apache.commons.codec.binary Base64))))
@@ -22,6 +23,10 @@
      [:button
       {:on-click #(comms/send-msg :components/commtest {:msg "Hello World!"})}
       "Send Message"]
+
+     [:button
+      (urlstate/href-props app-atom "guestbook")
+      "Open Guestbook"]
 
      [:button
       (urlstate/href-props app-atom "second")

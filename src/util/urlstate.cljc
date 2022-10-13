@@ -147,11 +147,11 @@
   #?(:clj nil
      :cljs (.back js/history)))
 
-(defn- transformer-create-url
+(defn transformer-create-url
   [token path-prefix location]
   (str path-prefix token))
 
-(defn- transformer-retrieve-token
+(defn transformer-retrieve-token
   [path-prefix location]
   (str (.-pathname location) (.-search location) (.-hash location)))
 
